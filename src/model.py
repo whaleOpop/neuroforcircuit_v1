@@ -23,12 +23,12 @@ def learning_neuro():
     # Явно указываем индекс GPU
     device = 0 if torch.cuda.is_available() else 'cpu'
     
-    model = YOLO('yolov8s.pt')
+    model = YOLO('./runs/circuit_elements/weights/best.pt')
     model.train(
         data='data.yaml',
         epochs=150,
         imgsz=640,
-        name='restudying_neuro_v44',
+        name='restudying_neuro_v4.8-b',
         patience=10,
         batch=16,  # Уменьшенный размер батча
         device=device,  # Теперь передаётся как 0 или 'cpu'
@@ -52,7 +52,7 @@ def analytics_learning():
 def process_image(path, test_image):
 
  # Предобученная модель
-    model = YOLO('./runs/restudying_neuro_v442/weights/best.pt')
+    model = YOLO('./runs/restudying_neuro_v4417/weights/best.pt')
  # Загрузка изображения
     image = cv2.imread(path+test_image)
     # Применение модели
@@ -98,6 +98,7 @@ def process_image(path, test_image):
 
 
 if __name__ == '__main__':
+    # learning_neuro()
    # process_image()
 
 
@@ -112,5 +113,5 @@ if __name__ == '__main__':
     for i in range(0, len(img_list)):
         process_image(folder_path, img_list[i])
 
-#print("Физические ядра:", psutil.cpu_count(logical=False))
-#print("Логические ядра:", psutil.cpu_count(logical=True))
+# #print("Физические ядра:", psutil.cpu_count(logical=False))
+# #print("Логические ядра:", psutil.cpu_count(logical=True))
